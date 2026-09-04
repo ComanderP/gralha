@@ -5,11 +5,10 @@ library;
 
 import "package:flutter/widgets.dart";
 import "package:go_router/go_router.dart";
-import "package:provider/provider.dart";
+import "package:gralha/ui/home/widgets/home_content.dart";
 
 import "../ui/core/app.dart";
-import "../ui/home/view_models/home_sidebar_viewmodel.dart";
-import "../ui/home/widgets/home_sidebar.dart";
+import "../ui/home/widgets/home_screen.dart";
 import "../ui/settings/widgets/settings_screen.dart";
 
 part "app_router.g.dart";
@@ -28,15 +27,12 @@ final appRouter = GoRouter(routes: $appRoutes);
 )
 class const HomeShellRoute() extends ShellRouteData {
   @override
-  Widget builder(BuildContext context, GoRouterState state, Widget navigator) => AppShell(
-    sidebar: HomeSidebar(viewModel: HomeSidebarViewModel(universeRepository: context.read())),
-    child: navigator,
-  );
+  Widget builder(BuildContext context, GoRouterState state, Widget navigator) => HomeScreen(child: navigator);
 }
 
 class const HomeRoute() extends GoRouteData with $HomeRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) => const Center(child: Text("Library"));
+  Widget build(BuildContext context, GoRouterState state) => HomeContent();
 }
 
 // ---------------------------------------------------------------------------

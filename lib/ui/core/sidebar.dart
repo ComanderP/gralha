@@ -1,4 +1,4 @@
-import "package:flutter/widgets.dart";
+import "package:material_ui/material_ui.dart";
 
 class const Sidebar({
   super.key,
@@ -19,10 +19,9 @@ class const Sidebar({
   Widget build(BuildContext context) {
     return Container(
       width: extended ? 250 : 80,
-      color: const Color.fromARGB(116, 157, 157, 157),
+      color: Theme.of(context).colorScheme.surfaceContainerHighest,
       child: Column(
         children: [
-          ?leading,
           Expanded(
             child: ListView(
               children: sections,

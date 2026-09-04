@@ -12,7 +12,7 @@ RouteBase get $homeShellRoute => ShellRouteData.$route(
   factory: $HomeShellRouteExtension._fromState,
   routes: [
     GoRouteData.$route(
-      path: '/trds',
+      path: '/',
       hasOverriddenOnExit: false,
       factory: $HomeRoute._fromState,
     ),
@@ -28,7 +28,7 @@ mixin $HomeRoute on GoRouteData {
   static HomeRoute _fromState(GoRouterState state) => const HomeRoute();
 
   @override
-  String get location => GoRouteData.$location('/trds');
+  String get location => GoRouteData.$location('/');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -48,7 +48,7 @@ RouteBase get $settingsShellRoute => ShellRouteData.$route(
   factory: $SettingsShellRouteExtension._fromState,
   routes: [
     GoRouteData.$route(
-      path: '/',
+      path: '/settings',
       hasOverriddenOnExit: false,
       factory: $SettingsRoute._fromState,
     ),
@@ -64,7 +64,7 @@ mixin $SettingsRoute on GoRouteData {
   static SettingsRoute _fromState(GoRouterState state) => const SettingsRoute();
 
   @override
-  String get location => GoRouteData.$location('/');
+  String get location => GoRouteData.$location('/settings');
 
   @override
   void go(BuildContext context) => context.go(location);

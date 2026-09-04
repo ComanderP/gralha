@@ -1,26 +1,48 @@
-import "package:flutter/widgets.dart";
+import "package:material_ui/material_ui.dart";
+import "package:provider/provider.dart";
 
+import "../../../data/repositories/universe/universe_repository.dart";
+import "../../../data/repositories/universe/universe_repository_local.dart";
+import "../../../utils/preview.dart";
 import "../../core/sidebar.dart";
 import "../view_models/home_sidebar_viewmodel.dart";
+
+@Preview(name: "Populated Sidebar", group: "Home", size: Size(250, 500))
+WidgetBuilder homeSidebarPopulated() =>
+    (context) => HomeSidebar(
+      viewModel: HomeSidebarViewModel(
+        universeRepository: context.read<UniverseRepository>(),
+      ),
+    );
+
+@Preview(name: "Empty Sidebar", group: "Home", size: Size(250, 500))
+Widget homeSidebarEmpty() => HomeSidebar(
+  viewModel: HomeSidebarViewModel(
+    universeRepository: UniverseRepositoryLocal(universes: []),
+  ),
+);
 
 class const HomeSidebar({
   super.key,
 
   /// The view model that provides the data for the home sidebar.
   required final HomeSidebarViewModel _viewModel,
-}) extends StatefulWidget {
-  @override
-  State<HomeSidebar> createState() => _HomeSidebarState();
-}
-
-class _HomeSidebarState extends State<HomeSidebar> {
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Sidebar(
-      sections: [
-        Text("Home Sidebar"),
-        for (final universe in widget._viewModel.universes) Text(universe.name),
-      ],
+    final textTheme = Theme.of(context).textTheme;
+    return ListenableBuilder(
+      listenable: _viewModel,
+      builder: (context, _) => Sidebar(
+        leading: Container(
+          padding: const EdgeInsets.all(16),
+          child: Text("Story App", style: textTheme.titleMedium),
+        ),
+        sections: [
+          Text("Home Sidebar", style: textTheme.labelMedium),
+          for (final universe in _viewModel.universes) Text(universe.name, style: textTheme.bodyMedium),
+        ],
+      ),
     );
   }
 }

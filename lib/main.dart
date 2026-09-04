@@ -3,6 +3,7 @@ import "package:provider/provider.dart";
 
 import "config/dependencies.dart";
 import "config/licences.dart";
+import "config/theme.dart";
 import "routing/app_router.dart";
 
 void main() {
@@ -19,6 +20,9 @@ class GralhaApp extends StatelessWidget {
       providers: dependencies,
       child: MaterialApp.router(
         title: "Gralha",
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        themeMode: ThemeMode.system,
         routerConfig: appRouter,
       ),
     );

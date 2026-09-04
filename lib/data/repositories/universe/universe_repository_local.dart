@@ -3,10 +3,11 @@ import "../../../domain/models/ids.dart";
 import "../../../utils/result.dart";
 import "universe_repository.dart";
 
-class UniverseRepositoryLocal implements UniverseRepository {
-  final List<Universe> _universes = [
-    Universe(id: UniverseId("1"), name: "Cool", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-  ];
+class UniverseRepositoryLocal({
+  /// An optional starting list of universes to populate the repository with.
+  List<Universe> universes = const [],
+}) implements UniverseRepository {
+  final List<Universe> _universes = [...universes];
 
   @override
   Future<Result<List<Universe>>> getAll() async => Result.ok(List.unmodifiable(_universes));
