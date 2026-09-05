@@ -1,5 +1,14 @@
 import "package:material_ui/material_ui.dart";
 
+import "../../utils/preview.dart";
+
+@Preview(name: "Sidebar Section Title", group: "Core", textScaleFactor: 2)
+WidgetBuilder sectionTitlePreview() =>
+    (context) => Container(
+      color: Theme.of(context).colorScheme.surfaceContainerHighest,
+      child: SidebarSectionTitle("Section Title"),
+    );
+
 class const Sidebar({
   super.key,
 
@@ -22,6 +31,7 @@ class const Sidebar({
       color: Theme.of(context).colorScheme.surfaceContainerHighest,
       child: Column(
         children: [
+          ?leading,
           Expanded(
             child: ListView(
               children: sections,
@@ -30,6 +40,20 @@ class const Sidebar({
           ?trailing,
         ],
       ),
+    );
+  }
+}
+
+class const SidebarSectionTitle(final String title, {super.key}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          title,
+          style: TextTheme.of(context).labelMedium,
+        ),
+      ],
     );
   }
 }

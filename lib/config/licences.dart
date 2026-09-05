@@ -8,5 +8,8 @@ void registerAppLicence() {
   LicenseRegistry.addLicense(() async* {
     final text = await rootBundle.loadString("LICENSE.md");
     yield LicenseEntryWithLineBreaks(const ["Gralha"], text);
+
+    final inter = await rootBundle.loadString("fonts/Inter-LICENSE.txt");
+    yield LicenseEntryWithLineBreaks(const ["Inter"], inter);
   });
 }

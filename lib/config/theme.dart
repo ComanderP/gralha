@@ -7,13 +7,20 @@ abstract final class AppColours {
   static const Color seed = Color(0xFF4C5BD4);
 }
 
-final ThemeData lightTheme = ThemeData(
-  colorScheme: ColorScheme.fromSeed(seedColor: AppColours.seed),
-);
+abstract final class AppFonts {
+  /// https://rsms.me/inter/
+  static const String inter = "Inter";
+  static const List<String> interFallback = ["packages/gralha/$inter"];
+}
 
-final ThemeData darkTheme = ThemeData(
+final ThemeData lightTheme = _buildTheme(Brightness.light);
+final ThemeData darkTheme = _buildTheme(Brightness.dark);
+
+ThemeData _buildTheme(Brightness brightness) => ThemeData(
   colorScheme: ColorScheme.fromSeed(
     seedColor: AppColours.seed,
-    brightness: Brightness.dark,
+    brightness: brightness,
   ),
+  fontFamily: AppFonts.inter,
+  fontFamilyFallback: AppFonts.interFallback,
 );

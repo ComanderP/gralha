@@ -30,19 +30,27 @@ class const HomeSidebar({
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final textTheme = TextTheme.of(context);
     return ListenableBuilder(
       listenable: _viewModel,
       builder: (context, _) => Sidebar(
         leading: Container(
+          alignment: Alignment.center,
           padding: const EdgeInsets.all(16),
           child: Text("Story App", style: textTheme.titleMedium),
         ),
         sections: [
-          Text("Home Sidebar", style: textTheme.labelMedium),
+          SidebarSectionTitle("Universes"),
           for (final universe in _viewModel.universes) Text(universe.name, style: textTheme.bodyMedium),
         ],
       ),
     );
+  }
+}
+
+class const SidebarSectionTitle(final String title, {super.key}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text(title, style: TextTheme.of(context).labelMedium);
   }
 }
