@@ -22,20 +22,18 @@ class const Sidebar({
   final Widget? trailing,
 
   /// The sections to display, in order.
-  required final List<Widget> sections,
+  required final Widget middle,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: extended ? 250 : 80,
+      width: extended ? 280 : 80,
       color: Theme.of(context).colorScheme.surfaceContainerHighest,
       child: Column(
         children: [
           ?leading,
           Expanded(
-            child: ListView(
-              children: sections,
-            ),
+            child: middle,
           ),
           ?trailing,
         ],
@@ -47,13 +45,35 @@ class const Sidebar({
 class const SidebarSectionTitle(final String title, {super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          title,
-          style: TextTheme.of(context).labelMedium,
+    return Text(
+      title,
+      style: TextTheme.of(context).titleMedium,
+    );
+  }
+}
+
+class const SidebarSectionButton(final String label, {super.key}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ElevatedButton(
+        onPressed: () {},
+        child: Text(
+          label,
+          style: TextTheme.of(context).bodyMedium,
         ),
-      ],
+      ),
+    );
+  }
+}
+
+class const SidebarSectionDivider({super.key}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Divider(
+      thickness: 2,
+      height: 1,
     );
   }
 }
