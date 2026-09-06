@@ -1,3 +1,4 @@
+import "package:material_symbols_icons/material_symbols_icons.dart";
 import "package:material_ui/material_ui.dart";
 import "package:provider/provider.dart";
 
@@ -41,34 +42,63 @@ class const HomeSidebar({
               Align(
                 alignment: Alignment.centerRight,
                 child: IconButton(
-                  icon: const Icon(Icons.chevron_left),
+                  icon: const Icon(Symbols.chevron_left),
                   onPressed: () {},
                 ),
               ),
             ],
           ),
         ),
-        middle: Column(
-          children: [
-            SidebarSectionTitle("Menu"),
-            SidebarSectionButton("Recent"),
-            SidebarSectionButton("All Stories"),
-            SidebarSectionButton("All Universes"),
-            SidebarSectionTitle("Universes"),
-            if (_viewModel.universes.isEmpty)
-              Text(
-                "No universes found. Create one to get started!",
-                style: textTheme.bodySmall?.copyWith(color: textTheme.bodySmall?.color?.withAlpha(150)),
-              )
-            else
-              Expanded(
-                child: ListView(
-                  children: [
-                    for (final universe in _viewModel.universes) SidebarSectionButton(universe.name),
-                  ],
+        middle: Padding(
+          padding: const .all(8.0),
+          child: Column(
+            crossAxisAlignment: .end,
+            children: [
+              Align(
+                alignment: .centerLeft,
+                child: Text(
+                  "Menu",
+                  style: TextStyle(
+                    fontSize: textTheme.titleMedium?.fontSize,
+                    color: textTheme.bodyMedium?.color?.withAlpha(150),
+                  ),
                 ),
               ),
-          ],
+              OutlinedButton.icon(
+                style: OutlinedButton.styleFrom(
+                  iconColor: Colors.amber,
+                  shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+                onPressed: () {},
+                icon: const Icon(Symbols.crop_square),
+                label: Text(
+                  "Recent",
+                  style: textTheme.bodyMedium,
+                ),
+              ),
+
+              SidebarSectionButton("Recent"),
+              SidebarSectionButton("All Stories"),
+              SidebarSectionButton("All Universes"),
+              SidebarSectionTitle("Universes"),
+
+              if (_viewModel.universes.isEmpty)
+                Text(
+                  "No universes found. Create one to get started!",
+                  style: textTheme.bodySmall?.copyWith(color: textTheme.bodySmall?.color?.withAlpha(150)),
+                )
+              else
+                Expanded(
+                  child: ListView(
+                    children: [
+                      for (final universe in _viewModel.universes) SidebarSectionButton(universe.name),
+                    ],
+                  ),
+                ),
+            ],
+          ),
         ),
         trailing: Padding(
           padding: const EdgeInsets.all(8),
@@ -76,10 +106,10 @@ class const HomeSidebar({
             spacing: 5,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.settings),
+                  IconButton.outlined(
+                    icon: const Icon(Symbols.settings, fill: 1),
                     onPressed: () {},
                   ),
                 ],
