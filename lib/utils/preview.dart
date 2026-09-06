@@ -15,20 +15,33 @@ final class const Preview({
   super.textScaleFactor,
   super.brightness,
   super.localizations,
+  bool background = false,
 }) extends previews.Preview {
-  this : super(theme: Preview._themeBuilder, wrapper: Preview._previewWrapper);
+  this
+    : super(
+        theme: Preview._themeBuilder,
+        wrapper: background ? Preview._backgroundWrapper : Preview._plainWrapper,
+      );
 
   static PreviewThemeData _themeBuilder() {
-    return PreviewTheme(light: lightTheme, dark: darkTheme);
+    return BrightnessPreviewTheme(light: lightTheme, dark: darkTheme);
   }
 
-  static Widget _previewWrapper(Widget child) => MultiProvider(
+  static Widget _plainWrapper(Widget child) => MultiProvider(providers: dependencies, child: child);
+
+  static Widget _backgroundWrapper(Widget child) => MultiProvider(
     providers: dependencies,
-    child: child,
+    child: Builder(
+      builder: (context) => Container(
+        padding: const EdgeInsets.all(8),
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        child: child,
+      ),
+    ),
   );
 }
 
-final class const PreviewTheme({
+final class const BrightnessPreviewTheme({
   required final ThemeData _light,
   required final ThemeData _dark,
 }) extends PreviewThemeData {

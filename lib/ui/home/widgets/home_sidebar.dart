@@ -34,12 +34,18 @@ class const HomeSidebar({
     return ListenableBuilder(
       listenable: _viewModel,
       builder: (context, _) => Sidebar(
-        leading: Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.all(16),
-          child: Text(
-            "Story App",
-            style: textTheme.titleLarge,
+        leading: Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  icon: const Icon(Icons.chevron_left),
+                  onPressed: () {},
+                ),
+              ),
+            ],
           ),
         ),
         middle: Column(
@@ -69,6 +75,15 @@ class const HomeSidebar({
           child: Column(
             spacing: 5,
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.settings),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
               SidebarSectionDivider(),
               Text("Version 1.0.0", style: textTheme.bodySmall),
             ],

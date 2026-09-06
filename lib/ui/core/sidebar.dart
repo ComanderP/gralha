@@ -2,12 +2,8 @@ import "package:material_ui/material_ui.dart";
 
 import "../../utils/preview.dart";
 
-@Preview(name: "Sidebar Section Title", group: "Core", textScaleFactor: 2)
-WidgetBuilder sectionTitlePreview() =>
-    (context) => Container(
-      color: Theme.of(context).colorScheme.surfaceContainerHighest,
-      child: SidebarSectionTitle("Section Title"),
-    );
+@Preview(name: "Sidebar Section Title", group: "Core", textScaleFactor: 2, background: true)
+Widget sectionTitlePreview() => SidebarSectionTitle("Section Title");
 
 class const Sidebar({
   super.key,

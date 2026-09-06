@@ -23,4 +23,13 @@ ThemeData _buildTheme(Brightness brightness) => ThemeData(
   ),
   fontFamily: AppFonts.inter,
   fontFamilyFallback: AppFonts.interFallback,
+  // Icon buttons
+  iconButtonTheme: IconButtonThemeData(
+    style: IconButton.styleFrom(
+      splashFactory: InkSparkle.splashFactory,
+      shape: RoundedSuperellipseBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+  ),
 );
